@@ -38,8 +38,8 @@ export class SailsRequest {
 
     constructor(private sails: Sails) { }
 
-    public get(url: string, headers?: SailsIOClient.Headers) {
-        return this._request(Method.GET, url, headers);
+    public get(url: string, params?: object, headers?: SailsIOClient.Headers) {
+        return this._request(Method.GET, url, params, headers);
     }
 
     public post(url: string, params: object, headers?: SailsIOClient.Headers) {

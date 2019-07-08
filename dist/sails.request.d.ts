@@ -13,7 +13,7 @@ export declare class SailsRequest {
     private sails;
     private parameters;
     constructor(sails: Sails);
-    get(url: string, headers?: SailsIOClient.Headers): Observable<SailsResponse>;
+    get(url: string, params?: object, headers?: SailsIOClient.Headers): Observable<SailsResponse>;
     post(url: string, params: object, headers?: SailsIOClient.Headers): Observable<SailsResponse>;
     put(url: string, params: object, headers?: SailsIOClient.Headers): Observable<SailsResponse>;
     delete(url: string, headers?: SailsIOClient.Headers): Observable<SailsResponse>;

@@ -518,8 +518,8 @@
             this.sails = sails;
             this.parameters = [];
         }
-        SailsRequest.prototype.get = function (url, headers) {
-            return this._request(Method.GET, url, headers);
+        SailsRequest.prototype.get = function (url, params, headers) {
+            return this._request(Method.GET, url, params, headers);
         };
         SailsRequest.prototype.post = function (url, params, headers) {
             return this._request(Method.POST, url, params, headers);
