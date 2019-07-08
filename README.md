@@ -93,7 +93,7 @@ Makes a request for a resource to the configured sails server. Has methods that 
 
 #### Methods
 
-* get(url: `string`): `Observable<SailsResponse>`
+* get(url: `string`, data: `any`): `Observable<SailsResponse>`
 * post(url: `string`, data: `any`): `Observable<SailsResponse>`
 * put(url: `string`, data: `any`): `Observable<SailsResponse>`
 * patch(url: `string`, body: `any`): `Observable<SailsResponse>`
@@ -139,7 +139,7 @@ export class AuthInterceptor implements SailsInterceptorInterface {
         request.clone({
             headers: request.headers.set("Authorization", token)
         });
-        
+
         const response = next.handle(request);
 
         return response.then(res => {
