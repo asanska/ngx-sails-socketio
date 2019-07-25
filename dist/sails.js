@@ -110,9 +110,9 @@ var Sails = /** @class */ (function () {
     Sails.prototype.on = function (eventName) {
         var _this = this;
         return new Observable(function (obs) {
-            _this.socket.on(eventName, function (response) {
+            _this.socket.on(eventName, function (response, ack) {
                 if (response) {
-                    var event_1 = new SailsEvent(response);
+                    var event_1 = new SailsEvent(response, ack);
                     obs.next(event_1);
                     _this.debugReqRes(eventName, event_1);
                 }

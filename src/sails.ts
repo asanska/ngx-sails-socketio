@@ -128,9 +128,9 @@ export class Sails implements SailsInterceptorInterface, SailsInterceptorHandler
 
     public on(eventName: string): Observable<SailsEvent> {
         return new Observable((obs) => {
-            this.socket.on(eventName, response => {
+            this.socket.on(eventName, (response, ack) => {
                 if (response) {
-                    const event = new SailsEvent(response);
+                    const event = new SailsEvent(response, ack);
                     obs.next(event);
                     this.debugReqRes(eventName, event);
                 }

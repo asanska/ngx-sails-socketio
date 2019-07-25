@@ -121,8 +121,9 @@
         REMOVED: "removed",
     };
     var SailsEvent = /** @class */ (function () {
-        function SailsEvent(JWR) {
+        function SailsEvent(JWR, ack) {
             this.JWR = JWR;
+            this.ack = ack;
         }
         SailsEvent.prototype.isCreated = function () {
             return this.getVerb() === Verb.CREATED;
@@ -147,6 +148,19 @@
         };
         SailsEvent.prototype.getId = function () {
             return this.JWR.id;
+        };
+        SailsEvent.prototype.hasAck = function () {
+            return !!this.ack;
+        };
+        SailsEvent.prototype.acknowledge = function () {
+            var params = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                params[_i] = arguments[_i];
+            }
+            if (!this.ack)
+                return false;
+            this.ack.apply(this, params);
+            return true;
         };
         return SailsEvent;
     }());
@@ -254,9 +268,9 @@
         Sails.prototype.on = function (eventName) {
             var _this = this;
             return new rxjs.Observable(function (obs) {
-                _this.socket.on(eventName, function (response) {
+                _this.socket.on(eventName, function (response, ack) {
                     if (response) {
-                        var event_1 = new SailsEvent(response);
+                        var event_1 = new SailsEvent(response, ack);
                         obs.next(event_1);
                         _this.debugReqRes(eventName, event_1);
                     }

@@ -60,7 +60,7 @@ export declare namespace SailsIOClient {
     }
 
     interface EventCallback {
-        (response): void;
+        (response, ack): void;
     }
 
     interface ResponseCallback {

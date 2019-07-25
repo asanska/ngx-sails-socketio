@@ -51,7 +51,7 @@ export declare namespace SailsIOClient {
         headers?: Headers;
     }
     interface EventCallback {
-        (response: any): void;
+        (response: any, ack: any): void;
     }
     interface ResponseCallback {
         (body: any, JWR: JWR.Response): void;

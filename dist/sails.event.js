@@ -6,8 +6,9 @@ export var Verb = {
     REMOVED: "removed",
 };
 var SailsEvent = /** @class */ (function () {
-    function SailsEvent(JWR) {
+    function SailsEvent(JWR, ack) {
         this.JWR = JWR;
+        this.ack = ack;
     }
     SailsEvent.prototype.isCreated = function () {
         return this.getVerb() === Verb.CREATED;
@@ -32,6 +33,19 @@ var SailsEvent = /** @class */ (function () {
     };
     SailsEvent.prototype.getId = function () {
         return this.JWR.id;
+    };
+    SailsEvent.prototype.hasAck = function () {
+        return !!this.ack;
+    };
+    SailsEvent.prototype.acknowledge = function () {
+        var params = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            params[_i] = arguments[_i];
+        }
+        if (!this.ack)
+            return false;
+        this.ack.apply(this, params);
+        return true;
     };
     return SailsEvent;
 }());

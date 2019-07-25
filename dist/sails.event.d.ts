@@ -8,7 +8,8 @@ export declare const Verb: {
 };
 export declare class SailsEvent {
     private JWR;
-    constructor(JWR: SailsIOClient.JWR.Event);
+    private ack?;
+    constructor(JWR: SailsIOClient.JWR.Event, ack?: Function | undefined);
     isCreated(): boolean;
     isUpdated(): boolean;
     isDestroyed(): boolean;
@@ -17,4 +18,6 @@ export declare class SailsEvent {
     getVerb(): string;
     getData(): object;
     getId(): string | number;
+    hasAck(): boolean;
+    acknowledge(...params: any[]): boolean;
 }

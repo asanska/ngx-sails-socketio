@@ -9,7 +9,7 @@ export const Verb = {
 };
 
 export class SailsEvent {
-    constructor(private JWR: SailsIOClient.JWR.Event) { }
+    constructor(private JWR: SailsIOClient.JWR.Event, private ack?: Function) { }
 
     public isCreated(): boolean {
         return this.getVerb() === Verb.CREATED;
@@ -42,4 +42,15 @@ export class SailsEvent {
     public getId(): string | number {
         return this.JWR.id;
     }
+
+    public hasAck(): boolean {
+        return !!this.ack;
+    }
+
+    public acknowledge(...params): boolean {
+        if (!this.ack) return false;
+        this.ack(...params);
+        return true;
+    }
+
 }
