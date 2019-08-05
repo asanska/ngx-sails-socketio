@@ -68,6 +68,7 @@ export declare namespace SailsIOClient {
     }
 
     interface Socket {
+        _raw: any;
         _connect(): void;
         reconnect(): any;
         disconnect(): any;

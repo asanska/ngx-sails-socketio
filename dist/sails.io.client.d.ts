@@ -57,6 +57,7 @@ export declare namespace SailsIOClient {
         (body: any, JWR: JWR.Response): void;
     }
     interface Socket {
+        _raw: any;
         _connect(): void;
         reconnect(): any;
         disconnect(): any;

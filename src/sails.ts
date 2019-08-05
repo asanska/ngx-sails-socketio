@@ -84,6 +84,13 @@ export class Sails implements SailsInterceptorInterface, SailsInterceptorHandler
         this.Config = Config;
     }
 
+    public getSocketRaw(): any {
+        if (this.socket._raw) {
+            return this.socket._raw;
+        }
+        return null;
+    }
+
     public connect(): Sails {
         if (!this.connected()) {
             this.socket._connect();

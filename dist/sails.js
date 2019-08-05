@@ -72,6 +72,12 @@ var Sails = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Sails.prototype.getSocketRaw = function () {
+        if (this.socket._raw) {
+            return this.socket._raw;
+        }
+        return null;
+    };
     Sails.prototype.connect = function () {
         if (!this.connected()) {
             this.socket._connect();

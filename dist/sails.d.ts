@@ -30,6 +30,7 @@ export declare class Sails implements SailsInterceptorInterface, SailsIntercepto
     private Listeners;
     private socket;
     constructor(injector: Injector, options: SailsOptions, Interceptors?: SailsInterceptorConstructor[]);
+    getSocketRaw(): any;
     connect(): Sails;
     connected(): boolean;
     isConnecting(): Sails;
