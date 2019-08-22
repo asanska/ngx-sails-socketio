@@ -8,9 +8,11 @@ export interface SailsRequestOptionsInterface {
 }
 
 export class SailsRequestOptions {
+    private readonly isArrayParams: boolean = false;
     private readonly options: SailsRequestOptionsInterface;
 
     constructor({ url, method, params, headers }: SailsIOClient.RequestOptions) {
+        this.isArrayParams = Array.isArray(params);
         this.options = { url, method, params: this.toMap(params), headers: this.toMap(headers) };
     }
 
@@ -33,7 +35,7 @@ export class SailsRequestOptions {
     }
 
     private toObject(map: Map<string, string> = new Map) {
-        let obj = {};
+        let obj = (this.options.params === map && this.isArrayParams) ? [] : {};
         map.forEach((v, k) => (obj[k] = v));
         return obj;
     }

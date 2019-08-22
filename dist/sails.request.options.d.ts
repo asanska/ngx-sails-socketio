@@ -6,6 +6,7 @@ export interface SailsRequestOptionsInterface {
     headers?: Map<string, string>;
 }
 export declare class SailsRequestOptions {
+    private readonly isArrayParams;
     private readonly options;
     constructor({ url, method, params, headers }: SailsIOClient.RequestOptions);
     clone(options: SailsRequestOptionsInterface): this;

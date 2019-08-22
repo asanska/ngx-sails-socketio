@@ -441,6 +441,8 @@
     var SailsRequestOptions = /** @class */ (function () {
         function SailsRequestOptions(_a) {
             var url = _a.url, method = _a.method, params = _a.params, headers = _a.headers;
+            this.isArrayParams = false;
+            this.isArrayParams = Array.isArray(params);
             this.options = { url: url, method: method, params: this.toMap(params), headers: this.toMap(headers) };
         }
         SailsRequestOptions.prototype.clone = function (options) {
@@ -461,7 +463,7 @@
         };
         SailsRequestOptions.prototype.toObject = function (map) {
             if (map === void 0) { map = new Map; }
-            var obj = {};
+            var obj = (this.options.params === map && this.isArrayParams) ? [] : {};
             map.forEach(function (v, k) { return (obj[k] = v); });
             return obj;
         };
